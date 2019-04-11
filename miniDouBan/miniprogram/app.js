@@ -15,7 +15,7 @@ const douban = require('./utils/douban.js')
 
 App({
   data: {
-    name: 'Douban movie',
+    name: 'miniDouban movie',
     version: '1.0.0',
     currentCity: '北京'
   },
@@ -37,7 +37,6 @@ App({
     wechat
       .getLocation()
       .then(res => {
-        console.log(res)
         const {latitude, longitude} = res
         return baidu.getCityName(latitude, longitude)
       })

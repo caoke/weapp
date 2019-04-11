@@ -10,13 +10,13 @@ Page({
   data: {
     movies: []
   },
-
+  // 获取缓存的数据
   getCache() {
     return new Promise((resolve, reject) => {
       app.wechat.getStorage('last_splash_data')
       .then(res => {
         const { movies, expires } = res.data
-        console.log(expires > Date.now())
+        
         if(movies.length && expires > Date.now()){
           return resolve(res.data)
         }
@@ -42,10 +42,11 @@ Page({
     this.getCache()
       .then(cache => {
         console.log('cache:', cache)
+        // 若有缓存 则直接使用缓存
         if(cache) {
           return this.setData({movies: cache.movies})
         }
-
+        // 不存在 douban请求
         app.douban.find('coming_soon', 1, 3)
           .then(res => {
             console.log('find:', res)

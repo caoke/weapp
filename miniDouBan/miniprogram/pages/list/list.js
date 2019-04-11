@@ -1,6 +1,6 @@
-// board.js
-
+//list.js
 // 获取全局应用程序实例对象
+
 const app = getApp()
 
 Page({
@@ -9,34 +9,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    boards: [
-      { key: 'in_theaters' },
-      { key: 'coming_soon' },
-      { key: 'new_movies' },
-      { key: 'top250' }
-    ]
+    title: '',
+    type: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({ title: '拼命加载中...' })
-    // 获取所有的数据
-    const tasks = this.data.boards.map(board => {
-      return app.douban.find(board.key, 1, 8).then((res) => {
-        board.title = res.title
-        board.movies = res.subjects
-        return board
-      })
-    })
+    this.data.title = params.title || this.data.title
 
-    Promise.all(tasks).then(boards => {
-      console.log(boards)
-      this.setData({boards: boards})
-      wx.hideLoading()
-    })
-
+    // 类型： in_theaters  coming_soon  us_box
+    this.data.type = params.type || this.data.type
   },
 
   /**
