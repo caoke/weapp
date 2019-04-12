@@ -10,17 +10,33 @@ Page({
    */
   data: {
     title: '',
-    type: ''
+    type: '',
+    page: 1,
+    size: 8,
+    subtitle: '加载中...'
+  },
+  // 获取更多数据
+  loadMore() {
+    wx.showLoading({
+      title: '拼命加载中',
+    })
+    this.setData({ subtitle: '加载中...' })
+    return app.douban.find(this.data.type, this.data.page++, this.data.size).then(res => {
+
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.title = params.title || this.data.title
+    this.data.title = options.title || this.data.title
 
     // 类型： in_theaters  coming_soon  us_box
-    this.data.type = params.type || this.data.type
+    this.data.type = options.type || this.data.type
+
+    this.loadMore()
+
   },
 
   /**

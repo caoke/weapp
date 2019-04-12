@@ -5,3 +5,50 @@
   height: 100%;
   width: 100%;
 }
+.board{
+  box-sizing: border-box;
+  background-color: #f8f9fb;
+}
+.board-item{
+  font-size: 20rpx;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  margin: 40rpx 0rpx;
+  padding: 20rpx;
+  cursor: pointer;
+}
+.board-item .title{
+  display: flex;
+  width: 100%;
+  margin-bottom: 10rpx;
+}
+.board-item .title text{
+  flex: 1;
+}
+.board-item .title image{
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.board-item .content{
+  height: 300rpx;
+}
+.board-item .content .inner{
+  display: flex;
+}
+.board-item .content .inner .movie-item{
+  display: flex;
+  flex-direction: column;
+  margin: 10rpx;
+}
+.board-item .content .inner .movie-item image{
+  width: 180rpx;
+  height: 250rpx;
+}
+.board-item .content .inner .movie-item text{
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

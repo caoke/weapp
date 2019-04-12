@@ -2,7 +2,8 @@
   "pages": [
     "pages/splash/splash",
     "pages/board/board",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/list/list"
   ],
   "window": {
     "backgroundColor": "#000000",

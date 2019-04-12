@@ -16,12 +16,25 @@ Page({
       { key: 'top250' }
     ]
   },
+  // 获取缓存的数据
+  getCache() {
+    return new Promise((resolve, reject) => {
+      app.wechat.getStorage('last_boards_data')
+        .then(res => {
+          const { boards, expires } = res.data
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    wx.showLoading({ title: '拼命加载中...' })
+          if (boards.length && expires > Date.now()) {
+            return resolve(res.data)
+          }
+          // 缓存过期
+          console.log('uncached boards')
+          return resolve(null)
+        })
+        .catch(e => resolve(null))
+    })
+  },
+  // 获取最新的数据
+  getLastData() {
     // 获取所有的数据
     const tasks = this.data.boards.map(board => {
       return app.douban.find(board.key, 1, 8).then((res) => {
@@ -33,10 +46,30 @@ Page({
 
     Promise.all(tasks).then(boards => {
       console.log(boards)
-      this.setData({boards: boards})
+      this.setData({ boards: boards })
+      // 存缓存
+      app.wechat.setStorage('last_boards_data', {
+        boards: boards,
+        expires: Date.now() + 1 * 24 * 60 * 60 * 1000
+      })
       wx.hideLoading()
     })
+  },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    wx.showLoading({ title: '拼命加载中...' })
+    this.getCache().then((cache) => {
+      // 若有缓存 则直接使用缓存
+      if (cache) {
+        wx.hideLoading()
+        return this.setData({ boards: cache.boards })
+      }
+      // 不存在缓存则去查询
+      this.getLastData()
+    })
   },
 
   /**
