@@ -46,7 +46,7 @@ App({
         return qqMap.reverseGeocoder(latitude, longitude)
     }).then(position => {
       console.log(position.address)
-      this.setData({address: position.address})
+      this.setData({ address: position.address })
     })
   }
 })
