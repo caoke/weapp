@@ -1,62 +1,70 @@
-.list{
-  height: 100vh;
+.list {
+  height: 100%;
 }
-.list .item{
+
+.list .item {
   display: flex;
   padding: 20rpx 40rpx;
+  border-bottom: 1rpx solid #eee;
   cursor: pointer;
-
 }
-.list .item .poster{
+
+.list .item .poster {
   width: 128rpx;
   height: 168rpx;
   margin-right: 20rpx;
 }
-.item .meta{
+
+.list .item .meta {
   flex: 1;
 }
-.item .meta .title{
+
+.list .item .meta .title,
+.list .item .meta .sub-title {
+  display: block;
+  margin-bottom: 15rpx;
+}
+
+.list .item .meta .title {
   font-size: 32rpx;
-  display: block;
-  margin-bottom: 15rpx;
 }
-.item .meta .sub-title{
-  color: rgb(156, 155, 155);
+
+.list .item .meta .sub-title {
   font-size: 22rpx;
-  display: block;
-  margin-bottom: 15rpx;
+  color: #c0c0c0;
 }
-.item .meta .artists{
+
+.list .item .meta .artists {
   font-size: 24rpx;
   color: #999;
 }
-.item .rating text{
+
+.list .item .rating text {
   display: inline-block;
-  background-color: rgba(247, 76, 49, 0.8);
   width: 40rpx;
-  text-align: center;
-  border-radius: 20rpx;
-  color: #fff;
   font-size: 28rpx;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgba(247, 76, 49, 0.8);
+  color: #fff;
   padding: 10rpx;
+  border-radius: 20rpx;
 }
-.list .tips{
+
+.list .tips {
   font-size: 28rpx;
   text-align: center;
   padding: 50rpx;
   color: #ccc;
 }
+
 .list .tips image,
 .list .tips text {
   vertical-align: middle;
 }
-.list .tips text{
-  font-size: 24rpx;
-  color: #999;
-}
-.list .tips image{
+
+.list .tips image {
   width: 40rpx;
   height: 40rpx;
   margin-right: 20rpx;
 }
-

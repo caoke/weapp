@@ -1,0 +1,54 @@
+.container{
+  height: 100vh;
+}
+.background{
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: .1;
+}
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50rpx 40rpx;
+}
+.meta image{
+  display: block;
+  margin: 20rpx auto;
+  height: 60vh;
+  width: 80vw;
+}
+.meta text{
+  display: block;
+}
+.meta .title{
+  font-size: 42rpx;
+  color: #444;
+  text-align: center;
+}
+.meta .info{
+  font-size: 24rpx;
+  color: #888;
+  margin-top: 20rpx;
+  width: 80vw;
+}
+.summary {
+  width: 80%;
+  margin: 30rpx auto;
+}
+
+
+.label {
+  display: block;
+  font-size: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.content {
+  color: #666;
+  font-size: 22rpx;
+  padding: 2em;
+}

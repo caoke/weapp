@@ -3,7 +3,8 @@
     "pages/splash/splash",
     "pages/board/board",
     "pages/search/search",
-    "pages/list/list"
+    "pages/list/list",
+    "pages/item/item"
   ],
   "window": {
     "backgroundColor": "#000000",
