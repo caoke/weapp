@@ -11,6 +11,8 @@
 	"appid": "wxdaeeef2c3000100f",
 	"projectname": "miniWeather",
 	"libVersion": "2.2.5",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

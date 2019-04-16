@@ -1,3 +1,12 @@
 <!--pages/index/index.wxml-->
 <!-- index.wxml -->
 <view class='bg' style='background-image:url{{bg}}'></view>
+
+<view class='container'>
+  <!-- 用户信息 -->
+  <view class='user-info'>
+    <open-data type="userAvatarUrl" class="user-avatar"></open-data>
+    <text>{{greeting}}, </text>
+    <open-data type="userNickName"></open-data>
+  </view>
+</view>

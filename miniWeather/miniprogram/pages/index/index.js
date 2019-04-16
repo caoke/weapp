@@ -6,12 +6,30 @@ Page({
      * 页面的初始数据
      */
     data: {
-        bg: ''
+        bg: '',
+        address: '',
+        greeting: ''
+
+    },
+    /**
+     * 获取问候语
+     */
+    getGreeting(){
+      
+    },
+    /**
+     * 获取位置描述
+     */
+    getAddress() {
+      app.wechat.getLocation().then(res => {
+        let { latitude, longitude } = res
+        return app.qqMap.reverseGeocoder(latitude, longitude)
+      }).then(position => {
+        this.data.address = position.address
+      })
     },
     init() {
-        wx.getLocation({
-            success: function(res) {},
-        })
+        
     },
 
     /**

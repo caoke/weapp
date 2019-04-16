@@ -14,11 +14,6 @@ const qqMap = require('./util/qqMap.js')
  */
 const heWeather = require('./util/heWeather.js')
 
-
-
-
-
-
 App({
   data: {
     address: '',
@@ -41,12 +36,12 @@ App({
     this.globalData = {}
 
     wechat.getLocation().then(res => {
-        console.log(res)
+        
         let {latitude, longitude} = res
         return qqMap.reverseGeocoder(latitude, longitude)
     }).then(position => {
-      console.log(position.address)
-      this.setData({ address: position.address })
+      
+      this.data.address = position.address
     })
   }
 })
