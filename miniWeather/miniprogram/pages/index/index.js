@@ -16,6 +16,7 @@ Page({
      */
     getGreeting(){
       
+      this.setData({greeting: app.utils.getGreeting()})
     },
     /**
      * 获取位置描述
@@ -29,7 +30,7 @@ Page({
       })
     },
     init() {
-        
+        this.getGreeting()
     },
 
     /**
