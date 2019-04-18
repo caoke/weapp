@@ -1,0 +1,5 @@
+<view class='search'>
+  <form>
+    <input name="input" placeholder="please input here" />
+  </form>
+</view>

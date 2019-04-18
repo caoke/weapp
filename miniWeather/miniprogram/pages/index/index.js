@@ -12,10 +12,17 @@ Page({
 
     },
     /**
+     * 获取天气信息
+     */
+    getWeather() {
+      // 获取实时天气数据
+      
+    },
+    /**
      * 获取问候语
      */
     getGreeting(){
-      
+      this.setData({ greeting: app.utils.getGreeting()})
     },
     /**
      * 获取位置描述
@@ -25,11 +32,12 @@ Page({
         let { latitude, longitude } = res
         return app.qqMap.reverseGeocoder(latitude, longitude)
       }).then(position => {
-        this.data.address = position.address
+        this.setData({address: position.address})
       })
     },
     init() {
-        
+      this.getGreeting()
+      this.getAddress()
     },
 
     /**

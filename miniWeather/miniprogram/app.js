@@ -14,6 +14,11 @@ const qqMap = require('./util/qqMap.js')
  */
 const heWeather = require('./util/heWeather.js')
 
+/**
+ * utils
+ */
+const utils = require('./util/utils.js')
+
 App({
   data: {
     address: '',
@@ -23,6 +28,7 @@ App({
   wechat: wechat,
   qqMap: qqMap,
   heWeather: heWeather,
+  utils: utils,
   onLaunch: function () {
     
     if (!wx.cloud) {
