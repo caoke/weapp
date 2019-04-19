@@ -29,6 +29,10 @@ App({
   qqMap: qqMap,
   heWeather: heWeather,
   utils: utils,
+  globalData: {
+    latitude: '',
+    longitude: ''
+  },
   onLaunch: function () {
     
     if (!wx.cloud) {
@@ -38,16 +42,13 @@ App({
         traceUser: true,
       })
     }
-
-    this.globalData = {}
-
-    wechat.getLocation().then(res => {
-        
-        let {latitude, longitude} = res
-        return qqMap.reverseGeocoder(latitude, longitude)
-    }).then(position => {
-      
-      this.data.address = position.address
-    })
+    // wechat.getLocation().then(res => {
+    //     let {latitude, longitude} = res
+    //     this.globalData.latitude = latitude
+    //     this.globalData.longitude = longitude
+    //     return qqMap.reverseGeocoder(latitude, longitude)
+    // }).then(position => {
+    //   this.data.address = position.address
+    // })
   }
 })
