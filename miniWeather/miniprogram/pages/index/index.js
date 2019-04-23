@@ -7,16 +7,51 @@ Page({
      */
     data: {
         bg: '',
+        location: {
+          latitude: '',
+          longitude: ''
+          
+        },
         address: '',
-        greeting: ''
+        greeting: '',
+        boards:[
+          { key: "now"},
+          { key: 'forecast'},
+          { key: 'hourly'},
+          { key: 'lifestyle'}
+        ]
 
+    },
+    /**
+     * 获取天气信息
+     */
+  getWeather(latitude, longitude) {
+      const location = `${longitude},${latitude}`
+      const tasks = this.data.boards.map(board => {
+        return app.heWeather.find(board.key, {location: location}).then(res => {
+          board.data = res.HeWeather6[0]
+          return board
+        })
+      })
+      // 获取实时天气数据
+      Promise.all(tasks).then(boards => {
+        wx.hideLoading()
+        this.setData({boards: boards})
+        this.getBg()
+      })
+    },
+    /**
+     * 根据实时天气获取背景图
+     */
+    getBg() {
+      let code = this.data.boards[0].data.now.cond_code
+      this.setData({ bg: app.heWeather.getBgImage(code)})
     },
     /**
      * 获取问候语
      */
     getGreeting(){
-      
-      this.setData({greeting: app.utils.getGreeting()})
+      this.setData({ greeting: app.utils.getGreeting()})
     },
     /**
      * 获取位置描述
@@ -24,13 +59,15 @@ Page({
     getAddress() {
       app.wechat.getLocation().then(res => {
         let { latitude, longitude } = res
+        this.getWeather(latitude, longitude)
         return app.qqMap.reverseGeocoder(latitude, longitude)
       }).then(position => {
-        this.data.address = position.address
+        this.setData({address: position.address})
       })
     },
     init() {
-        this.getGreeting()
+      this.getGreeting()
+      this.getAddress()
     },
 
     /**

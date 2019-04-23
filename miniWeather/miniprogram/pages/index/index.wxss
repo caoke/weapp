@@ -1,1 +1,34 @@
 /* pages/index/index.wxss */
+
+.bg {
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.container{
+  height: 100vh;
+}
+.container .user-info{
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-size: 36rpx;
+  width: 100%;
+}
+.user-info .user-avatar{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20rpx;
+}
+.greeting{
+  margin-right: 10rpx;
+}

@@ -1,6 +1,6 @@
 <!--pages/index/index.wxml-->
 <!-- index.wxml -->
-<view class='bg' style='background-image:url{{bg}}'></view>
+<view class='bg' style='background-image:url({{bg}})'></view>
 
 <view class='container'>
   <!-- 用户信息 -->
@@ -8,5 +8,12 @@
     <open-data type="userAvatarUrl" class="user-avatar"></open-data>
     <text>{{ greeting }}, </text>
     <open-data type="userNickName"></open-data>
+  </view>
+  <view class="position-info">
+    <text>{{address}}</text>
+    <image class="" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+      
+    </image>
+    
   </view>
 </view>

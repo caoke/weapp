@@ -1,23 +1,18 @@
-const getGreeting  = () => {
+const getGreeting = () => {
   let h = new Date().getHours()
   let w = ''
-  if (h > 0 && h <= 5) {
-    w = '深夜'
-  } else if (h > 5 && h <= 9) {
-    w = '早上'
-  } else if (h > 9 && h <= 11) {
-    w = '上午'
-  } else if (h > 11 && h <= 13) {
+  if( 5 <= h && h <= 10 ){
+    w = "早上"
+  } else if(11 <= h && h <= 13 ) {
     w = '中午'
-  } else if (h > 13 && h <= 17) {
+  }else if( 14 <= h && h <= 18 ) {
     w = '下午'
-  } else if (h > 17 && h <= 19) {
-    w = '傍晚'
-  } else {
+  } else if( 19<= h && h <= 23 ){
     w = '晚上'
+  }else if( 0 <= h && h <= 4) {
+    w = '凌晨'
   }
   return `${w}好`
-  return `${greeting}好`
 }
 module.exports = {
   getGreeting
