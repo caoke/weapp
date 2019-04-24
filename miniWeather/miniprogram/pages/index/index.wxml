@@ -9,11 +9,17 @@
     <text>{{ greeting }}, </text>
     <open-data type="userNickName"></open-data>
   </view>
-  <view class="position-info">
-    <text>{{address}}</text>
-    <image class="" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
-      
-    </image>
-    
+  
+  <!-- 实时天气 -->
+  <view class="now">
+      <view class="now-position">
+        <text>{{address}}</text>
+        <text class='iconfont icon-ditu'></text>
+      </view>
+
+      <view class='now-tmp'>
+        <text class='now-tmp--num'>{{weather.now.now.tmp}}</text>
+        <text>℃</text>
+      </view>
   </view>
 </view>

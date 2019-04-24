@@ -20,6 +20,10 @@ const heWeather = require('./util/heWeather.js')
 const utils = require('./util/utils.js')
 
 
+/**
+ * 使用ayns 需要引入的库
+ */
+regeneratorRuntime = require('./lib/runtime.js')
 
 
 App({
@@ -32,6 +36,7 @@ App({
   qqMap: qqMap,
   heWeather: heWeather,
   utils: utils,
+  regeneratorRuntime: regeneratorRuntime,
   globalData: {
     latitude: '',
     longitude: ''

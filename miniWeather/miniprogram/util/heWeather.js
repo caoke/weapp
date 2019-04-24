@@ -131,7 +131,11 @@ const getBgImage = (code) =>{
     return item.codes.includes(parseInt(code))
   })
   let bgImg = BG_IMG_BASE_URL + (cur ? `/${cur.type}` : '/calm') + '.jpg'
-  return bgImg
+  let bgInfo = {
+    bgImage: bgImg,
+    bgColor: cur ? cur.color : ''
+  }
+  return bgInfo
 } 
 
 module.exports = {
