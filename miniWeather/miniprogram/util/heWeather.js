@@ -2,12 +2,14 @@
 const URI = 'https://free-api.heweather.com/s6/weather'
 // key
 const KEY = 'e6cd3629da2e446aad352f34c447b097'
-// 天气图标基地址
-const COND_ICON_BASE_URL = "https://6465-demo-57510e-1257978613.tcb.qcloud.la/miniWeather/images/cond-white"
+// 天气图标基地址 https://cdn.heweather.com/cond_icon/100.png
+const COND_ICON_BASE_URL = "https://6465-demo-57510e-1257978613.tcb.qcloud.la/miniWeather/images/cond-white/"
 // 背景图片基地址
 const BG_IMG_BASE_URL = "https://6465-demo-57510e-1257978613.tcb.qcloud.la/miniWeather/images/bg"
 // 生活指数图片基地址
 const LIFESTYLE_BASE_URL = 'https://6465-demo-57510e-1257978613.tcb.qcloud.la/miniWeather/images/lifestyle'
+
+
 
 const fetch = require('./fetch.js')
 
@@ -140,5 +142,6 @@ const getBgImage = (code) =>{
 
 module.exports = {
   find,
-  getBgImage
+  getBgImage,
+  COND_ICON_BASE_URL
 }

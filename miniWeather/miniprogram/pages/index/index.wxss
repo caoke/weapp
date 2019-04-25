@@ -34,6 +34,77 @@
   margin-right: 10rpx;
 }
 
+.now {
+  text-align: center;
+  margin: 50rpx auto;
+}
+.now-position{
+  display: flex;
+}
+.now-tmp{
+  display: flex;
+  justify-content: center;
+  margin: 20rpx 0rpx;
+}
+.now-tmp--num{
+  font-size: 100rpx;
+}
+.now-cond{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20rpx;
+  font-size: 40rpx;
+}
+.now-cond image {
+  width: 60rpx;
+  height: 60rpx;
+  color: #fff;
+}
+
+.now-cond text {
+  margin-left: 10rpx;
+}
+.now-wind {
+  display: flex;
+  justify-content: center;
+  font-size: 34rpx;
+  margin-bottom: 70rpx;
+}
+.now-wind--left{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.now-wind--right{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.now-wind--split{
+  border-left: 2rpx solid #fff;
+  margin: 0rpx 20rpx;
+}
+.now-update{
+  font-size: 26rpx;
+  text-align: right;
+}
+
+.now-info{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 40rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #fff;
+  font-size: 36rpx;
+}
+.now-info--item text{
+  margin-right: 40rpx;
+}
+
+.now-info--item .today, .now-info--item .tmp{
+  font-size: 30rpx;
+}
 
 .icon-ditu{
   color: #fff;

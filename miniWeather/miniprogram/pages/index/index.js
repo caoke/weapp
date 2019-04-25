@@ -1,22 +1,28 @@
 // pages/index/index.js
 const app = getApp()
 // 为了用`async await`
-// const regeneratorRuntime = app.regeneratorRuntime
 const regeneratorRuntime = require('../../lib/regenerator.js')
-// const regeneratorRuntime = require('../../lib/runtime.js')
+// const runtime = require('../../lib/runtime.js')
+
+// 天气图标基地址 https://cdn.heweather.com/cond_icon/100.png
+const COND_ICON_BASE_URL = app.heWeather.COND_ICON_BASE_URL
+
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    bg: '',
-    location: {
-      latitude: '',
-      longitude: ''
-    },
+    bg: '', // 背景图
+    // 经纬度
+    latitude: '',
+    longitude: '',
+    // 地理信息地址
     address: '',
+    // 问候语
     greeting: '',
+    weekday: '',
+
     weather: {
       now: "",
       forecast: "",
@@ -25,6 +31,9 @@ Page({
     },
     nowWeather: { // 实时天气数据
       tmp: 'N/A', // 温度
+      tmpMax: '', // 最高气温
+      tmpMin: "", // 最低气温
+      condIcon: '',
       condTxt: '', // 天气状况
       windDir: '', // 风向
       windSc: '', // 风力
@@ -34,47 +43,27 @@ Page({
       pcpn: '', // 降水量
       loc: '' // 当地时间
     },
+
+    hourlyWeather: [], // 逐小时天气数据
+
     days: ['今天', '明天', '后天'],
 
     dailyWeather: [], // 逐日天气数据
-
-    hourlyWeather: [], // 逐三小时天气数据
 
     lifestyle: [] // 生活指数
 
   },
   /**
-   * 获取天气信息
-   */
-  getWeather(latitude, longitude) {
-    const location = `${longitude},${latitude}`
-    const tasks = Object.keys(this.data.weather).map(w => {
-      return app.heWeather.find(w, { location: location }).then(res => {
-        this.data.weather[w] = res.HeWeather6[0]
-      })
-    })
-    // 获取实时天气数据
-    Promise.all(tasks).then(res => {
-      wx.hideLoading()
-      this.setData({ weather: this.data.weather})
-      this.getBg()
-    })
-  },
-  /**
-   * 获取实时天气情况
-   */
-  getNow() {
-    return app.heWeather.find('now', { location: this.data.location }).then(res => {
-      this.formatNow(res.HeWeather6[0])
-    })
-  },
-  /**
    * 格式化实时天气
    */
-  formatNow(data) {
+  formatNow() {
+    let data = this.data.weather.now
     this.setData({
       nowWeather: { // 实时天气数据
         tmp: data.now.tmp, // 温度
+        tmpMax: this.data.weather.forecast.daily_forecast[0].tmp_max,
+        tmpMin: this.data.weather.forecast.daily_forecast[0].tmp_min,
+        condIcon: COND_ICON_BASE_URL + data.now.cond_code + '.png', // 天气状况图标
         condTxt: data.now.cond_txt, // 天气状况
         windDir: data.now.wind_dir, // 风向
         windSc: data.now.wind_sc, // 风力
@@ -82,7 +71,7 @@ Page({
         pres: data.now.pres, // 大气压
         hum: data.now.hum, // 湿度
         pcpn: data.now.pcpn, // 降水量
-        loc: '' // 当地时间
+        loc: data.update.loc // 当地时间
       },
     })
   },
@@ -109,33 +98,67 @@ Page({
   init() {
     // 问候语
     this.setData({ greeting: app.utils.getGreeting() })
-    // 获取地理位置描述
-    this.getAddress()
+    // 获取星期几
+    this.setData({ weekday: app.utils.getWeekday() })
     // 初始化天气数据
     this.initWeather()
   },
-  /**
-   * 获取位置描述
-   */
-  getAddress() {
-    app.wechat.getLocation().then(res => {
-      let { latitude, longitude } = res
 
-      this.setData({
-        location: `${longitude},${latitude}`
+  // 获取当前时间
+  
+ 
+  async initWeather() {
+    // 获取地址信息
+    await this.getLocation()
+    // 获取天气信息
+    await this.getWeather()
+  },
+  /**
+   * 获取地理经纬度
+   */
+  async getLocation() {
+    await app.wechat.getLocation()
+      .then(res => {
+        let { latitude, longitude } = res
+        this.setData({
+          latitude: latitude,
+          longitude: longitude
+        })
+        return app.qqMap.reverseGeocoder(latitude, longitude)
+      }).then(position => {
+        this.setData({ address: position.address })
       })
-      // 获取地址文字描述
-      return app.qqMap.reverseGeocoder(latitude, longitude)
-    }).then(position => {
-      this.setData({ address: position.address })
-    })
+      .catch((err) => {
+        console.log(err)
+      })
   },
 
   /**
-   *初始化天气数据
+   * 获取天气信息
    */
-  async initWeather() {
-    await this.getNow()
+  getWeather() {
+    const location = `${this.data.longitude},${this.data.latitude}`
+    const tasks = Object.keys(this.data.weather).map(w => {
+      return app.heWeather.find(w, { location: location }).then(res => {
+        this.data.weather[w] = res.HeWeather6[0]
+      })
+    })
+    // 获取天气数据
+    Promise.all(tasks).then(res => {
+      wx.hideLoading()
+      this.setData({ weather: this.data.weather })
+      // 根据实时数据 获取背景图
+      this.getBg()
+      // 格式化实时天气数据
+      this.formatNow()
+      // 格式化hourly格式
+      this.formatHourly()
+    })
+
+  },
+
+  formatHourly() {
+    this.setData({ hourlyWeather: this.data.weather.hourly.hourly })
   },
 
   /**
