@@ -10,7 +10,6 @@ Page({
         location: {
           latitude: '',
           longitude: ''
-          
         },
         address: '',
         greeting: '',
