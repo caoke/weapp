@@ -9,7 +9,58 @@
     <text>{{ greeting }}, </text>
     <open-data type="userNickName"></open-data>
   </view>
-  <view class="position-info">
-    <text>{{address}}</text>
+  
+  <!-- 实时天气 -->
+  <view class="now">
+      <view class="now-position">
+        <text>{{address}}</text>
+        <text class='iconfont icon-ditu'></text>
+      </view>
+
+      <view class='now-tmp'>
+        <text class='now-tmp--num'>{{nowWeather.tmp}}</text>
+        <text class='now-tmp--unit'>℃</text>
+      </view>
+
+      <view class='now-cond'>
+        <image class='now-cond--image' src='{{nowWeather.condIcon}}'></image>
+        <text>{{nowWeather.condTxt}}</text>
+      </view>
+      <view class='now-wind'>
+        <view class='now-wind--left'>
+          <text>{{nowWeather.windDir}} {{nowWeather.windSc}}级</text>
+          <text>湿度 {{nowWeather.hum}}</text>
+        </view>
+        <view class='now-wind--split'></view>
+        <view class='now-wind--right'>
+          <text>大气压 {{nowWeather.pres}}</text>
+          <text>降水量 {{nowWeather.pcpn}}</text>
+        </view>
+      </view>
+      <view class='now-update'>
+        <text>更新时间：{{nowWeather.loc}}</text>
+      </view>
+
   </view>
+
+  <view class='now-info'>
+    <view class='now-info--item'>
+      <text>{{weekday}}</text>
+      <text class='today'>今天</text>
+    </view>
+    <view class='now-info--item'>
+      <text class='tmp'>{{nowWeather.tmpMax}}</text>
+      <text class='tmp'>{{nowWeather.tmpMin}}</text>
+    </view>
+   
+  </view>
+  <scroll-view scroll-x="true" class='hourly'>
+    <block wx:for="{{ hourlyWeather }}" wx:key="{{index}}">
+      <view class='hourly-item'>
+        <text>{{item.timeTxt}}</text>
+        <image src='{{item.condIcon}}'></image>
+        <text>{{item.tmp}}</text>
+      </view>
+    </block>
+  </scroll-view>
 </view>

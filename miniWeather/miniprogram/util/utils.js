@@ -14,6 +14,14 @@ const getGreeting = () => {
   }
   return `${w}好`
 }
+const getWeekday = () => {
+  let w = new Date().getDay()
+  let arr = ['日','一', '二', '三', '四', '五', '六']
+  return `星期${arr[w]}`
+}
+
+
 module.exports = {
-  getGreeting
+  getGreeting,
+  getWeekday
 }

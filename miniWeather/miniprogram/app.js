@@ -20,8 +20,6 @@ const heWeather = require('./util/heWeather.js')
 const utils = require('./util/utils.js')
 
 
-
-
 App({
   data: {
     address: '',
