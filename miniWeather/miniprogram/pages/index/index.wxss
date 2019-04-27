@@ -14,7 +14,6 @@
 }
 
 .container{
-  height: 100vh;
   color: #fff;
 }
 .container .user-info{
@@ -107,19 +106,47 @@
 }
 
 .hourly{
+  border-bottom: 2rpx solid #fff;
+  height: 184rpx;
+}
+
+.hourly .inner{
   display: flex;
-  height: 150px;
 }
 .hourly-item{
-  width: 120rpx;
   display: flex;
   flex-direction: column;
-  
-  margin: 10rpx 30rpx;
+  margin: 10rpx 20rpx;
+  align-items: center;
+}
+.hourly-item text{
+  font-size: 30rpx;
 }
 .hourly-item image{
-  height: 60rpx;
-  width: 60rpx;
+  height: 80rpx;
+  width: 80rpx;
+}
+
+.forecast{
+  height: 600rpx;
+}
+
+.forecast-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.forecast-item image{
+  width: 80rpx;
+  height: 80rpx;
+}
+.forecast-item .tmp{
+  display: flex;
+  flex: 0.2;
+  justify-content: space-between;
+}
+.forecast text{
+  font-size: 36rpx;
 }
 
 .icon-ditu{

@@ -52,6 +52,15 @@ Page({
       }
     ], // 逐小时天气数据
 
+    forecastWeather: [
+      {
+        weekday: '',
+        condIcon: '',
+        maxTmp: '',
+        minTmp: ''
+      }
+    ], //未来7天天气数据
+
     days: ['今天', '明天', '后天'],
 
     dailyWeather: [], // 逐日天气数据
@@ -121,6 +130,8 @@ Page({
       this.formatNow()
       // 格式化hourly格式
       this.formatHourly()
+
+      this.formatForecast()
     })
 
   },
@@ -176,6 +187,11 @@ Page({
         condIcon: app.heWeather.getIcon(item.cond_code)
       }
     })
+    arr.unshift({
+      tmp: this.data.weather.now.now.tmp,
+      timeTxt: '现在',
+      condIcon: app.heWeather.getIcon(this.data.weather.now.now.cond_code)
+    })
     this.setData({hourlyWeather: arr})
 
   },
@@ -186,10 +202,22 @@ Page({
     return `${txt}时`
   },
 
-  getIcon(){
-
+  /**
+   * 格式化未来7天的数据
+   */
+  formatForecast() {
+    let data = this.data.weather.forecast.daily_forecast
+    let arr = data.map(item => {
+      return {
+        weekday: app.utils.getWeekday(item.date),
+        condIcon: app.heWeather.getIcon(item.cond_code_d),
+        maxTmp: item.tmp_max,
+        minTmp: item.tmp_min
+      }
+    })
+    this.setData({forecastWeather: arr})
   },
-  
+
 
   /**
    * 生命周期函数--监听页面加载
