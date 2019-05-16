@@ -130,8 +130,10 @@ Page({
       this.formatNow()
       // 格式化hourly格式
       this.formatHourly()
-
+      // 格式化未来7天天气数据
       this.formatForecast()
+      // 格式化生活指数
+      this.formatLifeStyle()
     })
 
   },
@@ -176,7 +178,9 @@ Page({
       },
     })
   },
-
+  /**
+   * 格式化逐小时
+   */
   formatHourly() {
     this.setData({ hourlyWeather: this.data.weather.hourly.hourly })
     let data = this.data.weather.hourly.hourly
@@ -216,6 +220,21 @@ Page({
       }
     })
     this.setData({forecastWeather: arr})
+  },
+  /**
+   * 格式化生活指数
+   */
+  formatLifeStyle() {
+    let data = this.data.weather.lifestyle.lifestyle
+    let arr  = data.map(item => {
+      return {
+        iconSrc: app.heWeather.lifestyleImgList[item.type].src,
+        title: app.heWeather.lifestyleImgList[item.type].txt,
+        brf: item.brf,
+        txt: item.txt
+      }
+    })
+    this.setData({ lifestyle: arr })
   },
 
 

@@ -88,13 +88,18 @@
   text-align: right;
 }
 
+.section {
+  width: 100%;
+  background: rgba(0,0,0,0.4);
+  border-bottom: 1rpx solid rgb(218, 216, 216);
+ 
+}
 .now-info{
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 20rpx 40rpx;
   box-sizing: border-box;
-  border-bottom: 2rpx solid #fff;
   font-size: 36rpx;
 }
 .now-info--item text{
@@ -106,7 +111,6 @@
 }
 
 .hourly{
-  border-bottom: 2rpx solid #fff;
   height: 184rpx;
 }
 
@@ -152,4 +156,37 @@
 .icon-ditu{
   color: #fff;
   font-size: 36rpx;
+}
+
+.today-desc{
+  font-size: 32rpx;
+  width: 100%;
+  padding: 20rpx;
+}
+.today-desc text{
+  margin: 20rpx 10rpx;
+}
+
+.lifestyle {
+
+}
+.lifestyle .lifestyle-item{
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20rpx;
+}
+.lifestyle .lifestyle-item image{
+  width:80rpx;
+  height: 80rpx;
+}
+.lifestyle .lifestyle-item .ifestyle-item-right{
+  width: 80%;
+}
+.lifestyle-item__title{
+  font-size: 34rpx;
+}
+.lifestyle-item__desc{
+  font-size: 28rpx;
 }

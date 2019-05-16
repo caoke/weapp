@@ -114,8 +114,41 @@ const bgImglist = [
     color: '#6b7e8c'
   }
 ]
-
-
+// 生活指数
+const lifestyleImgList = {
+  comf: {
+    src: `${LIFESTYLE_BASE_URL}/lifestyle_comf.png`,
+    txt: '舒适度指数'
+  },
+  drsg: {
+    src: `${LIFESTYLE_BASE_URL}/lifestyle_drsg.png`,
+    txt: '穿衣指数'
+  },
+  flu: {
+    src: `${LIFESTYLE_BASE_URL}/lifestyle_flu.png`,
+    txt: '感冒指数'
+  },
+  sport: {
+    src: `${LIFESTYLE_BASE_URL}/lifestyle_sport.png`,
+    txt: '运动指数'
+  },
+  trav: {
+    src: `${LIFESTYLE_BASE_URL}/lifestyle_trav.png`,
+    txt: '旅游指数'
+  },
+  uv: {
+    src: `${LIFESTYLE_BASE_URL}/lifestyle_uv.png`,
+    txt: '紫外线指数'
+  },
+  cw: {
+    src: `${LIFESTYLE_BASE_URL}/lifestyle_cw.png`,
+    txt: '洗车指数'
+  },
+  air: {
+    src: `${LIFESTYLE_BASE_URL}/lifestyle_air.png`,
+    txt: '晾晒指数'
+  }
+}
 
 /**
  * 抓取特定类型的天气数据
@@ -150,5 +183,6 @@ const getIcon = (code) => {
 module.exports = {
   find,
   getBgImage,
-  getIcon
+  getIcon,
+  lifestyleImgList
 }
